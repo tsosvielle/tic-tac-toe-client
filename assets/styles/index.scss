@@ -1,1 +1,17 @@
 @import '~bootstrap/scss/bootstrap';
+
+.row {
+  max-width: 200px;
+  min-height: 80px;
+}
+
+.center-block {
+  float: none;
+}
+
+.tile {
+  border-style: solid;
+  background-color: blue;
+  font-size: 15px;
+  font-color: white;
+}
