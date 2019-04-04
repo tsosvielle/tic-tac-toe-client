@@ -14,3 +14,11 @@ as a site gate keeper.
 
 Incorporated an if else statement that determines if an x or an o can be placed
 and automatically changes turns once placed.
+
+Incorporated an empty array and incorporated functionality that populates the array with the data-id number from html and populates
+an array iteration with the current value of the playerTurn variable.
+
+created an array of win conditions and logic to check the value of the current array vs the win conditions. Generates an alert (for now) that lets the user know theyve hit a win condition
+
+04/04/19
+added user registration, signin, passwordchange, and logout functionality with curl scripts
