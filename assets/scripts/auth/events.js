@@ -24,7 +24,6 @@ const onSignUp = function (event) {
   event.preventDefault()
 
   const data = getFormFields(event.target)
-  console.log(data)
   api.signUp(data)
     .then(ui.signUpSuccess)
     .catch(ui.signUpFailure)
@@ -34,7 +33,6 @@ const onSignIn = function (event) {
   event.preventDefault()
 
   const data = getFormFields(event.target)
-  console.log(data)
   api.signIn(data)
     .then(ui.signInSuccess)
     .catch(ui.signInFailure)
@@ -65,20 +63,21 @@ const onNewGame = function (event) {
     .catch(ui.newGameFailure)
 }
 
-const resetClick = function (event) {
+const updateGame = function() {
+  api.updateGame('x', 0, true)
+}
+// const onPatchGame = function () {
+//   api.newGame()
+//     .then(ui.patchGameSuccess)
+//     .catch(ui.patchGameFailure)
+// }
+
+const myStatsClick = function (event) {
   event.preventDefault()
 
-  api.newGame()
-    .then(ui.resetGameSuccess)
-    .catch(ui.resetGameFailure)
-
-  clearArray()
-  boardReset()
-  gameOver = false
-  turnCounter = 0
-  playerTurn = 'x'
-  console.log(gameArray)
-  console.log($('#board').text())
+  api.getGames()
+    .then(ui.getGamesSuccess)
+    .catch(ui.getGamesFailure)
 }
 
 const clearArray = function () {
@@ -92,6 +91,7 @@ const boardReset = function () {
   $('.tile').text('')
 }
 let gameOver = false
+
 let playerTurn = 'x'
 let turnCounter = 0
 
@@ -105,6 +105,7 @@ const placeMarker = function (event) {
     gameArray[clickedSpace] = playerTurn
     turnCounter += 1
     winCondition(gameArray, playerTurn)
+    api.updateGame(clickedSpace, playerTurn, gameOver)
     playerTurn = 'o'
     if (gameOver !== true) { $('#message').text("player o's turn!") }
   } else if (textContent === '' && playerTurn === 'o') {
@@ -112,6 +113,7 @@ const placeMarker = function (event) {
     gameArray[clickedSpace] = playerTurn
     turnCounter += 1
     winCondition(gameArray, playerTurn)
+    api.updateGame(clickedSpace, playerTurn, gameOver)
     if (gameOver !== true) { $('#message').text("player x's turn!") }
     playerTurn = 'x'
   } else {
@@ -123,8 +125,6 @@ const placeMarker = function (event) {
 const gameArray = ['', '', '', '', '', '', '', '', '']
 
 const winCondition = function (gameArray, playerTurn) {
-  console.log(gameArray)
-  console.log(playerTurn)
   if
   ((gameArray[0] === gameArray[1] && gameArray[1] === gameArray[2] && gameArray[0] === playerTurn) ||
 (gameArray[3] === gameArray[4] && gameArray[4] === gameArray[5] && gameArray[3] === playerTurn) ||
@@ -136,9 +136,13 @@ const winCondition = function (gameArray, playerTurn) {
 (gameArray[2] === gameArray[5] && gameArray[5] === gameArray[8] && gameArray[2] === playerTurn)) {
     gameOver = true
     $('#message').text(playerTurn + ' is the winner!')
+    clearArray()
+    boardReset()
   } else if (turnCounter === 9) {
     gameOver = true
     $('#message').text("it's a tie!")
+    clearArray()
+    boardReset()
   }
 }
 
@@ -152,7 +156,8 @@ const addHandlers = function () {
   $('#new-user').on('click', newUserclick),
   $('#returning-user').on('click', returningUserclick),
   $('#user-management').on('click', accountClick),
-  $('#reset-game').on('click', resetClick)
+  $('#my-stats').on('click', myStatsClick)
+  $('#test').on('click', updateGame)
 }
 
 module.exports = {

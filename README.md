@@ -26,4 +26,8 @@ added user registration, signin, passwordchange, and logout functionality with c
 04/05/19
 
 reworked game logic to use id's rather than data id's. Added game reset function
-that clears array and html values of game components. 
+that clears array and html values of game components.
+
+added api calls that tracked changes to the user game object and stored outcomes
+
+added functionality to log total number of games played

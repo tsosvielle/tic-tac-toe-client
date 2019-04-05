@@ -13,4 +13,6 @@ $(() => {
   $('#sign-in').hide()
   $('#sign-out').hide()
   $('#user-management').hide()
+  $('#my-stats').hide()
+  $('#game-stats').hide()
 })
