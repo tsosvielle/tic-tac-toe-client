@@ -4,6 +4,8 @@ const store = require('../store')
 const signUpSuccess = function (data) {
   console.log('sign up sucess ran with the data: ', data)
   $('form').trigger('reset')
+  $('#sign-in').show()
+  $('#sign-up').hide()
 }
 
 const signUpFailure = function (data) {
@@ -16,6 +18,9 @@ const signInSuccess = function (data) {
   store.user = data.user
   console.log(store)
   $('form').trigger('reset')
+  $('#sign-in').hide()
+  $('#new-game').show()
+  $('#user-management').show()
 }
 
 const signInFailure = function (data) {
@@ -26,6 +31,7 @@ const signInFailure = function (data) {
 const changePwSuccess = function (data) {
   console.log('change PW sucess ran with the data: ', data)
   $('form').trigger('reset')
+  $('#change-password').hide()
 }
 
 const changePwFailure = function (data) {
@@ -44,6 +50,30 @@ const signOutFailure = function () {
   $('form').trigger('reset')
 }
 
+const newGameSuccess = function (data) {
+  $('#message').text('Let the games begin!')
+  $('.row').show('slow', function () {
+    $('#reset-game').show()
+    $('#my-stats').show()
+    store.game = data.game
+    console.log(data.game)
+  })
+}
+
+const newGameFailure = function () {
+  $('#message').text('Error beep boop')
+}
+
+const resetGameSuccess = function () {
+  $('#message').text('Board Cleared!')
+  $('.row').show('slow', function () {
+  })
+}
+
+const resetGameFailure = function () {
+  $('#message').text('Error beep boop')
+}
+
 module.exports = {
   signUpSuccess,
   signUpFailure,
@@ -52,5 +82,9 @@ module.exports = {
   changePwSuccess,
   changePwFailure,
   signOutSuccess,
-  signOutFailure
+  signOutFailure,
+  newGameSuccess,
+  newGameFailure,
+  resetGameSuccess,
+  resetGameFailure
 }

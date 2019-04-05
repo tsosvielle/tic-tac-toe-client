@@ -22,3 +22,8 @@ created an array of win conditions and logic to check the value of the current a
 
 04/04/19
 added user registration, signin, passwordchange, and logout functionality with curl scripts
+
+04/05/19
+
+reworked game logic to use id's rather than data id's. Added game reset function
+that clears array and html values of game components. 
