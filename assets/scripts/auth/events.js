@@ -3,6 +3,7 @@
 const getFormFields = require('./../../../lib/get-form-fields.js')
 const api = require('./api')
 const ui = require('./ui')
+const store = require('../store')
 
 const newUserclick = function () {
   $('#sign-up').show()
@@ -18,6 +19,8 @@ const returningUserclick = function () {
 
 const accountClick = function () {
   $('#change-password').show()
+  $('#sign-out').show()
+  $('#user-management').hide()
 }
 
 const onSignUp = function (event) {
@@ -60,17 +63,12 @@ const onNewGame = function (event) {
 
   api.newGame()
     .then(ui.newGameSuccess)
+    .then(defaultGameState)
     .catch(ui.newGameFailure)
 }
 
 const updateGame = function () {
   api.updateGame('x', 0, true)
-}
-
-const onPatchGame = function () {
-  api.newGame()
-    .then(ui.patchGameSuccess)
-    .catch(ui.patchGameFailure)
 }
 
 const myStatsClick = function (event) {
@@ -81,22 +79,17 @@ const myStatsClick = function (event) {
     .catch(ui.getGamesFailure)
 }
 
-const clearArray = function () {
-  let i = 0
-  for (i = 0; i < gameArray.length; i++) {
-    gameArray[i] = ' '
-    console.log(gameArray)
-  }
-}
-
-const boardReset = function () {
-  $('.tile').text('')
-}
-
 let gameOver = false
 
 let playerTurn = 'x'
 let turnCounter = 0
+
+const defaultGameState = function () {
+  playerTurn = 'x'
+  turnCounter = 0
+  gameOver = false
+  gameArray = ['', '', '', '', '', '', '', '', '']
+}
 
 const placeMarker = function (event) {
   const clickedSpace = event.target.id
@@ -124,7 +117,7 @@ const placeMarker = function (event) {
   }
 }
 
-const gameArray = ['', '', '', '', '', '', '', '', '']
+let gameArray = ['', '', '', '', '', '', '', '', '']
 
 const winCondition = function (gameArray, playerTurn) {
   if
@@ -138,13 +131,9 @@ const winCondition = function (gameArray, playerTurn) {
 (gameArray[2] === gameArray[5] && gameArray[5] === gameArray[8] && gameArray[2] === playerTurn)) {
     gameOver = true
     $('#message').text(playerTurn + ' is the winner!')
-    clearArray()
-    boardReset()
   } else if (turnCounter === 9) {
     gameOver = true
     $('#message').text("it's a tie!")
-    clearArray()
-    boardReset()
   }
 }
 
@@ -163,5 +152,9 @@ const addHandlers = function () {
 }
 
 module.exports = {
-  addHandlers
+  addHandlers,
+  playerTurn,
+  turnCounter,
+  gameOver,
+  gameArray
 }

@@ -31,3 +31,7 @@ that clears array and html values of game components.
 added api calls that tracked changes to the user game object and stored outcomes
 
 added functionality to log total number of games played
+
+04/08/19
+added reset functionality
+added font family
