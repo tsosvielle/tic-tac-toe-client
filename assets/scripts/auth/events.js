@@ -63,14 +63,15 @@ const onNewGame = function (event) {
     .catch(ui.newGameFailure)
 }
 
-const updateGame = function() {
+const updateGame = function () {
   api.updateGame('x', 0, true)
 }
-// const onPatchGame = function () {
-//   api.newGame()
-//     .then(ui.patchGameSuccess)
-//     .catch(ui.patchGameFailure)
-// }
+
+const onPatchGame = function () {
+  api.newGame()
+    .then(ui.patchGameSuccess)
+    .catch(ui.patchGameFailure)
+}
 
 const myStatsClick = function (event) {
   event.preventDefault()
@@ -84,12 +85,14 @@ const clearArray = function () {
   let i = 0
   for (i = 0; i < gameArray.length; i++) {
     gameArray[i] = ' '
+    console.log(gameArray)
   }
 }
 
 const boardReset = function () {
   $('.tile').text('')
 }
+
 let gameOver = false
 
 let playerTurn = 'x'
@@ -117,7 +120,6 @@ const placeMarker = function (event) {
     if (gameOver !== true) { $('#message').text("player x's turn!") }
     playerTurn = 'x'
   } else {
-    // will change command later
     $('#message').text('invalid move!')
   }
 }
@@ -157,7 +159,7 @@ const addHandlers = function () {
   $('#returning-user').on('click', returningUserclick),
   $('#user-management').on('click', accountClick),
   $('#my-stats').on('click', myStatsClick)
-  $('#test').on('click', updateGame)
+  $('#reset-game').on('click', updateGame)
 }
 
 module.exports = {

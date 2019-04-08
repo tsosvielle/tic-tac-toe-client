@@ -1,8 +1,13 @@
 @import '~bootstrap/scss/bootstrap';
 
+body {
+  background-color: #CCE4EF;
+}
+
 .row {
-  max-width: 200px;
-  min-height: 80px;
+  max-width: 400px;
+  min-height: 180px;
+  margin: 30px;
 }
 
 .center-block {
@@ -10,10 +15,48 @@
 }
 
 .tile {
+  background-color: transparent;
   border-style: solid;
-  background-color: blue;
-  font-size: 15px;
-  font-color: white;
+  font-size: 30px;
+  font-weight: 30px;
+  color: white;
   height: 100px;
   width: 100px;
+}
+
+[id="0"] {
+  border-top-color: transparent;
+  border-left-color: transparent;
+
+}
+
+[id="1"] {
+  border-top: transparent;
+}
+
+[id="2"] {
+border-top: transparent;
+border-right: transparent;
+}
+
+[id="3"] {
+border-left: transparent;
+}
+
+[id="5"] {
+  border-right: transparent;
+}
+
+[id="6"] {
+  border-left: transparent;
+  border-bottom: transparent;
+}
+
+[id="7"] {
+  border-bottom: transparent;
+}
+
+[id="8"] {
+  border-right: transparent;
+  border-bottom: transparent;
 }

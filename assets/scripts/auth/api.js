@@ -67,7 +67,7 @@ const getGames = function () {
 }
 
 const updateGame = function (index, value, bool) {
-return $.ajax({
+  return $.ajax({
     url: config.apiUrl + '/games/' + store.game.id,
     method: 'PATCH',
     headers: {
@@ -80,9 +80,9 @@ return $.ajax({
           value: value
         },
         over: bool
-     }
-   }
- })
+      }
+    }
+  })
 }
 
 module.exports = {

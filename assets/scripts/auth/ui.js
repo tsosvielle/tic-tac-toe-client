@@ -50,8 +50,26 @@ const newGameSuccess = function (data) {
     $('#my-stats').show()
     store.game = data.game
     $('#message').text(' ')
+    console.log(store)
     events.gameOver = false
+    clearArray()
+    boardReset()
+    events.turnCounter = 0
+    events.playerTurn = 'x'
+    console.log(store)
   })
+}
+
+const clearArray = function () {
+  let i = 0
+  for (i = 0; i < events.gameArray.length; i++) {
+    events.gameArray[i] = ' '
+    console.log(events.gameArray)
+  }
+}
+
+const boardReset = function () {
+  $('.tile').text('')
 }
 
 const newGameFailure = function () {
@@ -60,7 +78,7 @@ const newGameFailure = function () {
 
 const getGamesSuccess = function (data) {
   store.games = data.games
-  $('#game-stats').text(store.games.length)
+  $('#game-stats').text('Total games played ' + store.games.length)
   $('#game-stats').show()
 }
 
