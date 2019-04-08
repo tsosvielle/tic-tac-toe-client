@@ -5,6 +5,7 @@ const signUpSuccess = function (data) {
   $('form').trigger('reset')
   $('#sign-in').show()
   $('#sign-up').hide()
+  $('#message').text('')
 }
 
 const signUpFailure = function (data) {
@@ -15,10 +16,12 @@ const signUpFailure = function (data) {
 const signInSuccess = function (data) {
   store.user = data.user
   $('form').trigger('reset')
+  $('#message').text('')
   $('#sign-in').hide()
   $('#new-game').show()
   $('#user-management').show()
   $('#my-stats').show()
+    $('#message').text('succesfully signed in!')
 }
 
 const signInFailure = function (data) {
@@ -29,6 +32,7 @@ const signInFailure = function (data) {
 const changePwSuccess = function (data) {
   $('form').trigger('reset')
   $('#change-password').hide()
+  $('#message').text('succesfully changed password')
 }
 
 const changePwFailure = function (data) {
@@ -48,6 +52,7 @@ const signOutSuccess = function () {
   $('#message').hide()
   $('#new-user').show()
   $('#new-game').hide()
+  $('#message').text('')
 
   store.user = null
 }
