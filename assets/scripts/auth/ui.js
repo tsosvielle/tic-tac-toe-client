@@ -21,7 +21,7 @@ const signInSuccess = function (data) {
   $('#new-game').show()
   $('#user-management').show()
   $('#my-stats').show()
-    $('#message').text('succesfully signed in!')
+  $('#message').text('succesfully signed in!')
 }
 
 const signInFailure = function (data) {
