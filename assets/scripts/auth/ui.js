@@ -32,7 +32,7 @@ const signInFailure = function (data) {
 const changePwSuccess = function (data) {
   $('form').trigger('reset')
   $('#change-password').hide()
-  $('#message').text('succesfully changed password')
+  $('#message').text('Succesfully changed password')
 }
 
 const changePwFailure = function (data) {
