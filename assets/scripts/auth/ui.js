@@ -27,7 +27,9 @@ const signInSuccess = function (data) {
 const signInFailure = function (data) {
   $('#message').text('Error beep boop')
   $('form').trigger('reset')
-  $('#sign-up').show()
+  $('#returning-user').show()
+  $('#new-user').show()
+  $('#sign-in').hide()
 }
 
 const changePwSuccess = function (data) {
